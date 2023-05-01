@@ -1,4 +1,4 @@
-import Data.list
+import Data.List
 
 data Grupo = Metal | NoMetal | Halogeno | GasNoble deriving (Show, Eq)
 
@@ -7,14 +7,14 @@ data Elemento = Elemento {
     simboloQ :: String,
     nAtomico :: Int,
     grupoE :: Grupo
-} 
+} deriving (Show, Eq)
 
 data Compuesto = Compuesto {
     componente :: [(Sustancia , Int)],
     grupoC :: Grupo
 } deriving (Show,Eq)
 
-data Sustancia = Elem Elemento | Comp Compuesto deriving (Show,Eq)
+data Sustancia = Elem Elemento | Comp Compuesto deriving (Show, Eq)
 
 -- ********** Ejercicio 1 ********** -- 
 hidrogeno :: Sustancia
@@ -54,6 +54,25 @@ conduceBien (Comp compuesto) criterio
     | otherwise = False -- Para el resto, no son buenos conductores
 -- ********** Ejercicio 2 ********** -- 
 
+-- ********** Ejercicio 3 ********** --
+obtenerSustancia :: Sustancia -> Sustancia
+obtenerSustancia (Comp compuesto) = fst (head (componente compuesto))
 
+obtenerNombreSustancia :: Sustancia -> String
+obtenerNombreSustancia (Elem elemento) = nombre elemento
+
+obtenerPalabra :: Sustancia -> String
+obtenerPalabra = (obtenerNombreSustancia . obtenerSustancia)
+
+ultimaLetra :: String -> Char
+ultimaLetra palabra = last palabra
+
+
+
+
+
+
+
+-- ********** Ejercicio 3 ********** --
 
 
