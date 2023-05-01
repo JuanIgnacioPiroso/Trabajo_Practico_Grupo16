@@ -12,6 +12,7 @@ data Compuesto = Compuesto {
     grupoC :: Grupo
 } deriving (Show,Eq)
 
+data Sustancia = Elem Elemento | Comp Compuesto deriving (Show,Eq)
 
 
 
