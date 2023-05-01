@@ -67,6 +67,8 @@ obtenerPalabra = (obtenerNombreSustancia . obtenerSustancia)
 ultimaLetra :: String -> Char
 ultimaLetra palabra = last palabra
 
+esVocal :: Char -> Bool
+esVocal caracter = caracter `elem` "aeiouAEIOU"
 
 
 
