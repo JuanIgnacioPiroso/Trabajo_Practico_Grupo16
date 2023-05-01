@@ -40,7 +40,19 @@ agua = Comp(Compuesto{
         })
 -- ********** Ejercicio 1 ********** -- 
 
-
+-- ********** Ejercicio 2 ********** -- 
+conduceBien :: Sustancia -> String -> Bool
+conduceBien (Elem elemento) criterio
+    | grupoE elemento == Metal = True -- Los metales conducen bien cualquier criterio
+    | grupoE elemento == GasNoble && criterio == "electricidad" = True -- Los gases nobles conducen bien la electricidad
+    | grupoE elemento == Halogeno && criterio == "calor" = True -- Los compuestos halógenos conducen bien el calor
+    | otherwise = False -- Para el resto, no son buenos conductores
+conduceBien (Comp compuesto) criterio
+    | grupoC compuesto == Metal = True -- Los metales conducen bien cualquier criterio
+    | grupoC compuesto == GasNoble && criterio == "electricidad" = True -- Los gases nobles conducen bien la electricidad
+    | grupoC compuesto == Halogeno && criterio == "calor" = True -- Los compuestos halógenos conducen bien el calor
+    | otherwise = False -- Para el resto, no son buenos conductores
+-- ********** Ejercicio 2 ********** -- 
 
 
 
