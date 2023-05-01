@@ -14,11 +14,11 @@ data Compuesto = Compuesto {
     grupoC :: Grupo
 } deriving (Show,Eq)
 
-data Sustancia = Elem Elemento | Comp Compuesto deriving (Show, Eq)
+data Sustancia = Elementos Elemento | Compuestos Compuesto deriving (Show, Eq)
 
 -- ********** Ejercicio 1 ********** -- 
 hidrogeno :: Sustancia
-hidrogeno = Elem (Elemento{
+hidrogeno = Elementos (Elemento{
                 nombre = "hidrogeno",
                 simboloQ = "H",
                 nAtomico = 1,
@@ -26,7 +26,7 @@ hidrogeno = Elem (Elemento{
             })
 
 oxigeno :: Sustancia
-oxigeno = Elem(Elemento{
+oxigeno = Elementos(Elemento{
                 nombre = "oxigeno",
                 simboloQ = "O",
                 nAtomico = 8,
@@ -34,7 +34,7 @@ oxigeno = Elem(Elemento{
             })
 
 agua :: Sustancia
-agua = Comp(Compuesto{
+agua = Compuestos(Compuesto{
             componente = [(hidrogeno,2),(oxigeno,1)],
             grupoC = NoMetal
         })
@@ -42,12 +42,12 @@ agua = Comp(Compuesto{
 
 -- ********** Ejercicio 2 ********** -- 
 conduceBien :: Sustancia -> String -> Bool
-conduceBien (Elem elemento) criterio
+conduceBien (Elementos elemento) criterio
     | grupoE elemento == Metal = True -- Los metales conducen bien cualquier criterio
     | grupoE elemento == GasNoble && criterio == "electricidad" = True -- Los gases nobles conducen bien la electricidad
     | grupoE elemento == Halogeno && criterio == "calor" = True -- Los compuestos halógenos conducen bien el calor
     | otherwise = False -- Para el resto, no son buenos conductores
-conduceBien (Comp compuesto) criterio
+conduceBien (Compuestos compuesto) criterio
     | grupoC compuesto == Metal = True -- Los metales conducen bien cualquier criterio
     | grupoC compuesto == GasNoble && criterio == "electricidad" = True -- Los gases nobles conducen bien la electricidad
     | grupoC compuesto == Halogeno && criterio == "calor" = True -- Los compuestos halógenos conducen bien el calor
@@ -55,24 +55,26 @@ conduceBien (Comp compuesto) criterio
 -- ********** Ejercicio 2 ********** -- 
 
 -- ********** Ejercicio 3 ********** --
-obtenerSustancia :: Sustancia -> Sustancia
-obtenerSustancia (Comp compuesto) = fst (head (componente compuesto))
+primeraSustancia :: Sustancia -> Sustancia
+primeraSustancia (Compuestos compuesto) = fst (head (componente compuesto))
 
-obtenerNombreSustancia :: Sustancia -> String
-obtenerNombreSustancia (Elem elemento) = nombre elemento
+nombreSustancia :: Sustancia -> String
+nombreSustancia (Elementos elemento) = nombre elemento
 
-obtenerPalabra :: Sustancia -> String
-obtenerPalabra = (obtenerNombreSustancia . obtenerSustancia)
+palabra :: Sustancia -> String
+palabra = (nombreSustancia . primeraSustancia)
 
-obtenerUltimaLetra :: String -> Char
-obtenerUltimaLetra palabra = last palabra
+ultimaLetra :: String -> Char
+ultimaLetra palabra = last palabra
 
 esVocal :: Char -> Bool
 esVocal caracter = caracter `elem` "aeiouAEIOU"
 
 terminaEnVocal :: String -> Bool
-terminaEnVocal = (esVocal . obtenerUltimaLetra)
+terminaEnVocal = (esVocal . ultimaLetra)
 
+posicionUltimaConsonante :: String -> Maybe Int
+posicionUltimaConsonante palabra = findIndex (not . esVocal) (reverse palabra)
 
 -- ********** Ejercicio 3 ********** --
 
