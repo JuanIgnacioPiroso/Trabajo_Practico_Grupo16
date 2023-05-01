@@ -14,7 +14,29 @@ data Compuesto = Compuesto {
 
 data Sustancia = Elem Elemento | Comp Compuesto deriving (Show,Eq)
 
+-- ********** Ejercicio 1 ********** -- 
+hidrogeno :: Sustancia
+hidrogeno = Elem (Elemento{
+                nombre = "hidrogeno",
+                simboloQ = "H",
+                nAtomico = 1,
+                grupoE = NoMetal
+            })
 
+oxigeno :: Sustancia
+oxigeno = Elem(Elemento{
+                nombre = "oxigeno",
+                simboloQ = "O",
+                nAtomico = 8,
+                grupoE = NoMetal
+            })
+
+agua :: Sustancia
+agua = Comp(Compuesto{
+            componente = [(hidrogeno,2),(oxigeno,1)],
+            grupoC = NoMetal
+        })
+-- ********** Ejercicio 1 ********** -- 
 
 
 
