@@ -64,15 +64,14 @@ obtenerNombreSustancia (Elem elemento) = nombre elemento
 obtenerPalabra :: Sustancia -> String
 obtenerPalabra = (obtenerNombreSustancia . obtenerSustancia)
 
-ultimaLetra :: String -> Char
-ultimaLetra palabra = last palabra
+obtenerUltimaLetra :: String -> Char
+obtenerUltimaLetra palabra = last palabra
 
 esVocal :: Char -> Bool
 esVocal caracter = caracter `elem` "aeiouAEIOU"
 
-
-
-
+terminaEnVocal :: String -> Bool
+terminaEnVocal = (esVocal . obtenerUltimaLetra)
 
 
 -- ********** Ejercicio 3 ********** --
