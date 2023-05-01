@@ -7,6 +7,11 @@ data Elemento = Elemento {
     grupoE :: Grupo
 } 
 
+data Compuesto = Compuesto {
+    componente :: [(Sustancia , Int)],
+    grupoC :: Grupo
+} deriving (Show,Eq)
+
 
 
 
