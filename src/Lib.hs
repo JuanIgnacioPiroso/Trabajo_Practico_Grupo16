@@ -33,22 +33,6 @@ oxigeno = Elementos(Elemento{
                 grupoElemento = NoMetal
             })
 
-cloro :: Sustancia
-cloro = Elementos(Elemento{
-                nombre = "cloro",
-                simboloQuimico = "Cl",
-                numeroAtomico = 15,
-                grupoElemento = NoMetal
-            })
-
-sodio :: Sustancia
-sodio = Elementos(Elemento{
-                nombre = "sodio",
-                simboloQuimico = "Na",
-                numeroAtomico = 11,
-                grupoElemento = NoMetal
-            })
-
 agua :: Sustancia
 agua = Compuestos(Compuesto{
             componente = [(hidrogeno,2),(oxigeno,1)],
