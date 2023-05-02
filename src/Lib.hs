@@ -131,5 +131,4 @@ esMayorAUno numero
 formula :: Sustancia -> String
 formula (Compuestos compuesto) = (formulaPrimeraSustancia (Compuestos compuesto)) ++ ((esMayorAUno . cantidadMoleculasPrimeraSustancia) (Compuestos compuesto)) ++ (formulaSegundaSustancia (Compuestos compuesto)) ++ ((esMayorAUno . cantidadMoleculasSegundaSustancia) (Compuestos compuesto))
 formula (Elementos elemento) = formulaElemento (Elementos elemento)
-
 -- ********** Ejercicio 6 ********** --
