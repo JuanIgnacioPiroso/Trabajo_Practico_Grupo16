@@ -83,15 +83,23 @@ posicionUltimaConsonante nombres
 concatenarSiVocal :: String -> Int -> String
 concatenarSiVocal palabra posicionConsonante = take posicionConsonante palabra
 
-nombreDeUnion :: Sustancia -> String 
-nombreDeUnion compuesto
-                    | (terminaEnVocal compuesto) == True = (concatenarSiVocal (palabra compuesto) (posicionUltimaConsonante (palabra compuesto))) ++ "uro"
-                    | otherwise = (palabra compuesto) ++ "uro"
+terminaVocalElemento :: Sustancia -> Bool
+terminaVocalElemento = (esVocal . (ultimaLetra . nombreSustancia))
+
+nombreUnion :: Sustancia -> String 
+nombreUnion (Compuestos compuesto)
+                    | (terminaEnVocal (Compuestos compuesto)) == True = (concatenarSiVocal (palabra (Compuestos compuesto)) (posicionUltimaConsonante (palabra (Compuestos compuesto)))) ++ "uro"
+                    | otherwise = (palabra (Compuestos compuesto)) ++ "uro"
+nombreUnion (Elementos elemento)
+                    | (terminaVocalElemento (Elementos elemento)) == True = (concatenarSiVocal (nombreSustancia (Elementos elemento)) (posicionUltimaConsonante (nombreSustancia (Elementos elemento)))) ++ "uro"
+                    | otherwise = (show elemento) ++ "uro"
 -- ********** Ejercicio 3 ********** --
 
 -- ********** Ejercicio 4 ********** --
--- combinar :: String -> String -> String
--- combinar sustanciaUno sustanciaDos = (concatenar sustanciaUno) ++ " de " ++ (sustanciaDos) 
+segundaSustancia :: Sustancia -> Sustancia
+segundaSustancia (Compuestos compuesto) = fst ((componente compuesto) !! 1)
+combinar :: Sustancia -> Sustancia-> String
+combinar sustanciaUno sustanciaDos = ((nombreUnion sustanciaUno) ++ " de " ++ (nombreSustancia sustanciaDos)) 
 -- ********** Ejercicio 4 ********** --
 
 -- ********** Ejercicio 5 ********** --
@@ -99,23 +107,26 @@ nombreDeUnion compuesto
 -- ********** Ejercicio 5 ********** --
 
 -- ********** Ejercicio 6 ********** --
-
-segundaSustancia :: Sustancia -> Sustancia
-segundaSustancia (Compuestos compuesto) = fst ((componente compuesto) !! 1)
-
 formulaElemento :: Sustancia -> String
 formulaElemento (Elementos elemento) = simboloQuimico elemento
 
-cantidadMoleculasPrimeraSustancia :: Sustancia -> String
-cantidadMoleculasPrimeraSustancia (Compuestos compuesto) = show (snd ((componente compuesto) !! 0))
+formulaPrimeraSustancia :: Sustancia -> String
+formulaPrimeraSustancia = (formulaElemento . primeraSustancia)
 
-cantidadMoleculasSegundaSustancia :: Sustancia -> String
-cantidadMoleculasSegundaSustancia (Compuestos compuesto) = show (snd ((componente compuesto) !! 1))
+formulaSegundaSustancia :: Sustancia -> String
+formulaSegundaSustancia = (formulaElemento . segundaSustancia)
 
---formulaCompuesto :: Sustancia -> String
---formulaCompuesto (Compuestos compuesto) = ((formulaElemento . primeraSustancia) $ compuesto) ++ (cantidadMoleculasPrimeraSustancia $ compuesto)
+cantidadMoleculasPrimeraSustancia :: Sustancia -> Int
+cantidadMoleculasPrimeraSustancia (Compuestos compuesto) = snd ((componente compuesto) !! 0)
 
+cantidadMoleculasSegundaSustancia :: Sustancia -> Int
+cantidadMoleculasSegundaSustancia (Compuestos compuesto) = snd ((componente compuesto) !! 1)
 
---formula :: Sustancia 
-                                                
+esMayorAUno :: Int -> String
+esMayorAUno numero
+                |numero > 1 = show (numero)
+                |numero < 1 = ""
+
+formula :: Sustancia -> String
+formula compuesto = (formulaPrimeraSustancia compuesto) ++ ((esMayorAUno . cantidadMoleculasPrimeraSustancia) compuesto) ++ (formulaSegundaSustancia compuesto) ++ ((esMayorAUno . cantidadMoleculasSegundaSustancia) compuesto)                        
 -- ********** Ejercicio 6 ********** --
