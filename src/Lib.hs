@@ -99,7 +99,7 @@ nombreUnion (Elementos elemento)
 segundaSustancia :: Sustancia -> Sustancia
 segundaSustancia (Compuestos compuesto) = fst ((componente compuesto) !! 1)
 combinar :: Sustancia -> Sustancia-> String
-combinar sustanciaUno sustanciaDos = ((nombreUnion sustanciaUno) ++ " de " ++ (nombreSustancia sustanciaDos)) 
+combinar sustanciaUno sustanciaDos = ((nombreUnion sustanciaUno) ++ " de " ++ (nombreSustancia sustanciaDos))
 -- ********** Ejercicio 4 ********** --
 
 -- ********** Ejercicio 5 ********** --
