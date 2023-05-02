@@ -33,6 +33,22 @@ oxigeno = Elementos(Elemento{
                 grupoElemento = NoMetal
             })
 
+cloro :: Sustancia
+cloro = Elementos(Elemento{
+                nombre = "cloro",
+                simboloQuimico = "Cl",
+                numeroAtomico = 15,
+                grupoElemento = NoMetal
+            })
+
+sodio :: Sustancia
+sodio = Elementos(Elemento{
+                nombre = "sodio",
+                simboloQuimico = "Na",
+                numeroAtomico = 11,
+                grupoElemento = NoMetal
+            })
+
 agua :: Sustancia
 agua = Compuestos(Compuesto{
             componente = [(hidrogeno,2),(oxigeno,1)],
@@ -103,7 +119,14 @@ combinar sustanciaUno sustanciaDos = ((nombreUnion sustanciaUno) ++ " de " ++ (n
 -- ********** Ejercicio 4 ********** --
 
 -- ********** Ejercicio 5 ********** --
+nuevoCompuesto :: Sustancia -> Sustancia -> Sustancia
+nuevoCompuesto (Elementos elemento1) (Elementos elemento2) = Compuestos (Compuesto{
+    componente = [((Elementos elemento1),1),((Elementos elemento2),1)],
+    grupoCompuesto = NoMetal
+})
 
+mezclar :: Sustancia -> Sustancia -> String
+mezclar elemento1 elemento2 = (combinar elemento1 elemento2) ++ " = " ++ (show (nuevoCompuesto elemento1 elemento2))
 -- ********** Ejercicio 5 ********** --
 
 -- ********** Ejercicio 6 ********** --
