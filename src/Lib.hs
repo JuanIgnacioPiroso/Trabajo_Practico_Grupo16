@@ -124,9 +124,12 @@ cantidadMoleculasSegundaSustancia (Compuestos compuesto) = snd ((componente comp
 
 esMayorAUno :: Int -> String
 esMayorAUno numero
-                |numero > 1 = show (numero)
-                |numero < 1 = ""
+                | numero > 1 = show (numero)
+                | numero <= 1 = ""
+                | otherwise = "Se rompio todo"
 
 formula :: Sustancia -> String
-formula compuesto = (formulaPrimeraSustancia compuesto) ++ ((esMayorAUno . cantidadMoleculasPrimeraSustancia) compuesto) ++ (formulaSegundaSustancia compuesto) ++ ((esMayorAUno . cantidadMoleculasSegundaSustancia) compuesto)                        
+formula (Compuestos compuesto) = (formulaPrimeraSustancia (Compuestos compuesto)) ++ ((esMayorAUno . cantidadMoleculasPrimeraSustancia) (Compuestos compuesto)) ++ (formulaSegundaSustancia (Compuestos compuesto)) ++ ((esMayorAUno . cantidadMoleculasSegundaSustancia) (Compuestos compuesto))
+formula (Elementos elemento) = formulaElemento (Elementos elemento)
+
 -- ********** Ejercicio 6 ********** --
