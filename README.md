@@ -11,4 +11,4 @@
 * Federico Scarpa
 
 ## Consigna del Trabajo Practico 📋
-Consigna TP [2023 - PdeP - Funcional - Ejercicio - Química (1).pdf]
+Consigna TP [(2023 - PdeP - Funcional - Ejercicio - Química (1).pdf)]
